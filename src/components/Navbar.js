@@ -1,59 +1,77 @@
-
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
-import { Link } from 'react-router';
-export default function Navbar({master}) {
-  const [menuopen,setMenuopen]=useState(false);
-  const[menu,setMenu]=useState(false)
-  // console.log(storeduser.name)
-const handlemenu=()=>{
-  setMenuopen(true);
-}
-const handlemenuclose=()=>{
-  setMenuopen(false);
-}
+import { Link, useNavigate } from 'react-router-dom'; 
 
-const handlelogout=()=>{
-  setMenu(!menu)
+export default function Navbar({ master, setMaster }) {
+  const [menuopen, setMenuopen] = useState(false);
+  const [bcare, setBcare] = useState(false);
+  const navigate = useNavigate();
 
-  }
+  const handleMenu = () => {
+    setMenuopen(true);
+  };
+
+  const handleMenuClose = () => {
+    setMenuopen(false);
+  };
+
+  const handleLogout = () => {
+    setMaster(null);
+    localStorage.removeItem("master");
+    alert("Logout Successful");
+    navigate("/");
+  };
+
+  const handleBecomeCaregiver = () => {
+    setBcare(true);
+    alert("Redirecting to Become Caregiver Page...");
+    navigate("/Registration"); 
+  };
+
   return (
     <>
-    <div className="navbar">
-     <Link to="/"><p>Care<span className="logo">Connect</span></p></Link> 
-      <ul className="navli remove">
-       <Link to="/"><li>Home</li></Link> 
-       <a href ="#page2"> <li>About Us</li></a>
-       <a href="#page2service"> <li>Services</li></a>
-       <a href ="#page3"> <li>Testimonials</li></a>
-      <a href="#contactus"><li>Contact Us</li></a>
+      <div className="navbar">
+        <Link to="/"><p>Care<span className="logo">Connect</span></p></Link> 
+        <ul className="navli remove">
+          <Link to="/"><li>Home</li></Link> 
+          <a href="#page2"><li>About Us</li></a>
+          <a href="#page2service"><li>Services</li></a>
+          <a href="#page3"><li>Testimonials</li></a>
+          <a href="#contactus"><li>Contact Us</li></a>
+        </ul>
 
-      </ul>
-      <div className="idphoto" onClick={handlelogout}>
-      <img src="./img6.png" alt="/"/>
-      <span className="idname" >{master ? `${master.name}` : "Guest"}</span>
-      <div className={menu===true?"logout":"nologout"}>
-     <span>Logout</span>
-     <span>Login</span>
-     <span>Signup</span>
-    </div>
+        <div className="idphoto">
+          <div>
+            <img src="./img6.png" alt="/" />
+          </div>
+          <select className="obtion" onChange={(e) => {
+            if (e.target.value === "logout") {
+              handleLogout();
+            } else if (e.target.value === "become-caregiver") {
+              handleBecomeCaregiver();
+            }
+          }}>
+            <option>{master ? master.name : "Guest"}</option>
+            {master && <option value="logout">Logout</option>}
+            {master && <option value="browse-caregiver">Browse Caregiver</option>}
+            {master && <option value="become-caregiver">Become Caregiver</option>}
+          </select> 
+        </div>
+
+        <button className="menu" onClick={handleMenu}><MenuIcon/></button>
       </div>
-      {/* <button className="mainbtn">FindCare</button>
-      
-      <Link to="/Registration"><button className="mainbtn">Caregiver</button></Link> */}
-      <button className="menu"onClick={handlemenu}><MenuIcon/></button>
-    </div>
-    <div className={`${menuopen?'togglemenu':'menuclose'}`}>
-    <ul>
-    <Link to="/"><li>Home</li></Link>
-    <a href ="#page2"><li>About Us</li></a>
-    <a href="#page2service"><li>Services</li></a>
-      <a href="#page3"><li>Testimonials</li></a> 
-      <a href="#contactus"><li>Contact Us</li></a>
-      </ul>
-      <button className="closemenu"onClick={handlemenuclose}><CloseIcon/></button>
-    </div>
+
+      <div className={`${menuopen ? 'togglemenu' : 'menuclose'}`}>
+        <ul>
+          <Link to="/"><li>Home</li></Link>
+          <a href="#page2"><li>About Us</li></a>
+          <a href="#page2service"><li>Services</li></a>
+          <a href="#page3"><li>Testimonials</li></a> 
+          <a href="#contactus"><li>Contact Us</li></a>
+        </ul>
+        <button className="closemenu" onClick={handleMenuClose}><CloseIcon/></button>
+      </div>
     </>
-  )
+  );
 }

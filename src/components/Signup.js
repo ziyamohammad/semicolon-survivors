@@ -34,9 +34,6 @@ const Signup = ({handleClick}) => {
         setName("")
         setPassword("")
         setEmail("")
-
-        
-       
         alert("Signup Successfull")
         navigate("/Login")
       }

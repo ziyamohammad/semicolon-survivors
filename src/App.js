@@ -56,7 +56,7 @@ function App() {
   return (
     <div className="App">
       <Router>
-      <Navbar master={master}/>
+      <Navbar master={master} setMaster={setMaster}/>
       
       <Routes>
       <Route path="/" element={<Fullpage/>} />

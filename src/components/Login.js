@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link} from 'react-router';
+import { Link} from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -8,7 +8,7 @@ const Login = ({Handlelog}) => {
   const[name,setName]=useState();
   const[password,setPassword]=useState();
   
-  // const[isLoggedIn,setisLoggedIn]=useState(localStorage.getItem("isLoggedIn") === "true")
+  
   
  const handleChange=(e)=>{
   if(e.target.className==="username"){

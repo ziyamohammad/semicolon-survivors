@@ -1,4 +1,4 @@
-import axios from 'axios'
+
 import React, { useState } from 'react'
 
 export default function Registration() {
@@ -40,6 +40,19 @@ const validlanguage = /^[a-zA-Z\.\, ]{4,}$/;
   }
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const user = { name, number, email, address, qualification, language };
+    try{
+      const response=await fetch(`http://localhost:8079/api/v1/caregiver/register`,{
+        method:"POST",
+        headers:{
+          "Content-Type":"application/json",
+        },
+        body:JSON.stringify(user),
+      });
+      console.log(response);
+    }catch(error){
+      console.log("register",error);
+    }
     if((!validname.test(name)) && name){
       alert("Invalid name ,Enter full name");
       return;
@@ -88,13 +101,7 @@ const validlanguage = /^[a-zA-Z\.\, ]{4,}$/;
       alert("Please enter language");
       return;  
     }
-    const formData = { name, number, email, address, qualification, language };
-    try {
-      const response = await axios.post("http://localhost:5000/register", formData);
-      alert(response.data);
-    } catch (err) {
-      alert("Error: " + err.message);
-    }
+    
   };
 
   const handlevalidname=()=>{
