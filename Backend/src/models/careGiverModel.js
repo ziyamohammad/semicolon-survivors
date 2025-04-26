@@ -9,11 +9,11 @@ const careGiverSchema = new Schema({
     },
     dateOfBirth:{
         type: Date,
-        required:[true,"aadhar is required"]
+        required:[true,"date of birth is required"]
     },
     mobileNumber:{
         type: String,
-        required: [true,"full name is required"],
+        required: [true,"mobile number is required"],
     },
     email:{
         type: String,
@@ -39,7 +39,7 @@ const careGiverSchema = new Schema({
         required: [true, "Field of expertise is required"]
       },
       yearsOfExpertise: {
-        type: Number,
+        type: String,
         required: [true, "Years of expertise is required"],
         min: 0
       },

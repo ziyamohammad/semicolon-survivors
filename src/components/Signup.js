@@ -1,8 +1,11 @@
 
+import axios from 'axios';
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
-const Signup = ({handleClick}) => {
+
+const Signup = () => {
     const[name,setName]=useState();
       const[password,setPassword]=useState();
       const[email,setEmail]=useState();
@@ -25,17 +28,32 @@ const Signup = ({handleClick}) => {
     
       }
 
-      const Handlesignup=()=>{
-        if(name==="" || password===""||email===""){
-            alert("Please enter all mandatory fields")
-            return;
-          }
-        handleClick({name,email,password})
-        setName("")
-        setPassword("")
-        setEmail("")
-        alert("Signup Successfull")
-        navigate("/Login")
+      const Handlesignup=async (e)=>{
+        e.preventDefault()
+       const data = {
+        name,
+        email,
+        password
+       }
+       console.log(data)
+       try{
+         const response = await axios.post(`http://localhost:8079/api/v1/user/signup/register`,{
+         
+        username:data.name,
+        email:data.email,
+        password:data.password
+      })
+       console.log("signup Successfull",response.data)
+       
+       
+       toast.success("Signup Successfull")
+       navigate("/Login")
+       }catch(error){
+           console.log("error",error)
+           toast.error("error",error)
+       }
+     
+    
       }
     return (
         <div className="login">

@@ -1,1 +1,1 @@
-export const  DB_NAME = "CareConect"
+export const  DB_NAME = "CareConnect"

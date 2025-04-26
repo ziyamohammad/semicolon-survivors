@@ -1,7 +1,7 @@
 import React from 'react'
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 
-export default function Page2() {
+export default function Page2({master}) {
   return (
     <div className="page2" >
     <div className="caregiver" id="page2">
@@ -12,7 +12,10 @@ export default function Page2() {
         <li>Professional Background Verification</li>
         <li>Fraud Prevention Measures </li>
       </ul>
-    <Link to ="/Login"><button className="app1">Start</button></Link>
+      <Link to={master && Object.keys(master).length > 0 ? "/Registration" : "/Login"}>
+  <button className="app1">Start</button>
+</Link>
+
 
     </div>
     <div className="client">

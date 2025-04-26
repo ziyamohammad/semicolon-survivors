@@ -21,14 +21,11 @@ const registerCareGiver= asyncHandler( async (req,res) => {
             throw new ApiError(400, "All fields arerequired")
         }
 
-        const parsedMobileNumber = Number(mobileNumber);
-        const parsedYearsOfExpertise = Number(yearsOfExpertise);
+        const parsedMobileNumber = String(mobileNumber);
+        const parsedYearsOfExpertise = String(yearsOfExpertise);
         const parsedDrivingLicence = drivingLicence === 'true'; 
 
-        if (isNaN(parsedMobileNumber) || isNaN(parsedYearsOfExpertise)) {
-            throw new ApiError(400, "Mobile number and years of expertise must be numbers");
-        }
-
+       
         if(userExist){
             throw new ApiError(402, "CareGiver Already Exists")
         }
@@ -40,7 +37,8 @@ const registerCareGiver= asyncHandler( async (req,res) => {
         if(!aadharImageLocalPath){
             throw new ApiError(400, "Aadhar Image not found")
         }
-
+    
+        
     const careGiverImage= await uploadOnCloudinary(careGiverImageLocalPath)
 
     const aadharImage= await uploadOnCloudinary(aadharImageLocalPath)

@@ -1,12 +1,15 @@
+import axios from 'axios';
 import React, { useState } from 'react'
 import { Link} from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 
-const Login = ({Handlelog}) => {
+const Login = ({handlemaster}) => {
   const navigate=useNavigate();
   const[name,setName]=useState();
   const[password,setPassword]=useState();
+  const[logindata,setlogindata]=useState([]);
   
   
   
@@ -22,17 +25,32 @@ const Login = ({Handlelog}) => {
 
   }
 
-  const Handlelogin=()=>{
-    if(name==="" || password===""){
-      alert("Please enter all mandatory fields")
-      return;
+  const Handlelogin = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.get(`http://localhost:8079/api/v1/user/login/fetch`);
+      console.log(response.data);
+  
+      const user = response.data.data.find(
+        (user) => user.username === name && user.password === password
+      );
+  
+      if (user) {
+        localStorage.setItem('user', JSON.stringify(user));
+        console.log("Login Successful");
+        toast.success("Login Successful");
+        navigate("/");
+      } else {
+        toast.error("Invalid Credentials");
+      }
+     handlemaster(user)
+    } catch (error) {
+      console.log("error in fetching the data", error);
+      alert("Something went wrong while logging in");
     }
-   
-    Handlelog({name,password},navigate)
-    setName("")
-    setPassword("")
-
-  }
+    
+  };
+  
 
   return (
     <div className="login">

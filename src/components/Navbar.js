@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import { Link, useNavigate } from 'react-router-dom'; 
+import { toast } from 'react-toastify';
 
-export default function Navbar({ master, setMaster }) {
+export default function Navbar({ master , setmaster}) {
   const [menuopen, setMenuopen] = useState(false);
   const [bcare, setBcare] = useState(false);
   const navigate = useNavigate();
+
 
   const handleMenu = () => {
     setMenuopen(true);
@@ -17,9 +19,9 @@ export default function Navbar({ master, setMaster }) {
   };
 
   const handleLogout = () => {
-    setMaster(null);
+    setmaster(null);
     localStorage.removeItem("master");
-    alert("Logout Successful");
+    toast.success("Logout Successful");
     navigate("/");
   };
 
@@ -52,7 +54,7 @@ export default function Navbar({ master, setMaster }) {
               handleBecomeCaregiver();
             }
           }}>
-            <option>{master ? master.name : "Guest"}</option>
+            <option>{master ? master.username : "Guest"}</option>
             {master && <option value="logout">Logout</option>}
             {master && <option value="browse-caregiver">Browse Caregiver</option>}
             {master && <option value="become-caregiver">Become Caregiver</option>}
