@@ -103,7 +103,7 @@ const validlanguage = /^[a-zA-Z\.\, ]{4,}$/;
   
     try {
       const response = await axios.post(
-        "http://localhost:8079/api/v1/caregiver/register",
+        `http://localhost:8079/api/v1/caregiver/register`,
         formData)
         toast.success("Registration Successfull")
        console.log("Registration successful", response.data);

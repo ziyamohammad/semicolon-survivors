@@ -1,7 +1,21 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import axios from 'axios';
+import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 
-export default function Page2({master}) {
+export default function Page2({master,handlecaregiver}) {
+  
+  const navigate= useNavigate();
+  const fetchcaregiver = async()=>{
+      try{
+          const response = await axios.get(`http://localhost:8079/api/v1/caregiver/fetch`);
+          // console.log(response.data);
+         
+          handlecaregiver(response);
+          navigate("/Caregivers")
+      }catch(error){
+          console.log("error in fetching details");
+      }
+  }
   return (
     <div className="page2" >
     <div className="caregiver" id="page2">
@@ -26,7 +40,11 @@ export default function Page2({master}) {
         <li>Negotiate Terms</li>
         <li>Flexible Engagements</li>
       </ul>
-      <button className="app2">Browse</button>
+    <button className="app2"  onClick={() =>
+            master && Object.keys(master).length > 0
+              ? fetchcaregiver()
+              : navigate('/Login')
+          }>Browse</button>
 
     </div>
     <div className="services" id="page2service">

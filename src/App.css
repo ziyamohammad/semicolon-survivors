@@ -1766,6 +1766,118 @@ text-align:center;
 }
 
 
+/* fetching caregivers detail page */
+
+.choosecaregivers{
+   width:100vw;
+   height:100vh;
+   background:linear-gradient(#FFFFFFE5,#61AEB9);
+   display:flex;
+   flex-direction: column;
+   align-items: center;
+}
+.choosehead{
+  font-family: "Inter", serif; 
+font-weight: 600;
+font-size: 36px;
+text-align: center;
+margin-top:20px;
+
+
+}
+
+.caregivercard{
+  min-height:35vh;
+  max-height:auto;
+  width:90%;
+  background-color: rgba(151, 198, 205, 1);
+  margin-top:30px;
+  border-radius:12px;
+  border:2px solid white;
+  display:flex;
+  justify-content: space-around;
+  align-items:center;
+}
+.caregiverimage{
+  height:53%;
+  width:12%;
+  
+  
+}
+.caregiverimage img{
+    border-radius:50%;
+    border:6px solid rgba(217, 217, 217, 1);
+}
+.caredetails{
+  width: 80%;
+  max-height:auto;
+  min-height:80%;
+  background-color: rgba(255, 255, 255, 0.3);
+  box-shadow:-5px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  border-radius: 12px;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding:10px 20px 10px 20px;
+}
+.username{
+  font-family: "Inter", serif;  
+font-weight: 400;
+font-size: 24px;
+color:rgba(3, 172, 240, 1);
+
+
+}
+.aboutcaregiver{
+  font-family: "Inter", serif;   
+font-weight: 400;
+font-size: 18px;
+/* border-bottom:2px solid blue; */
+}
+.caregiverexpertise{
+  display:flex;
+  align-items: center;
+}
+.expertise{
+  font-family: "Inter", serif;    
+font-weight: 400;
+font-size: 15px;
+margin-bottom:2px;
+
+
+}
+.careheadings {
+  display:flex;
+ gap:197px;
+ font-family: "Inter", serif;    
+font-weight: 600;
+font-size: 15px;
+
+
+
+}
+.careheadingsanswer{
+  display:flex;
+  font-family: "Inter", serif;     
+font-weight: 400;
+font-size: 15px;
+
+
+  
+}
+.careemail{
+     margin-left:248px;  
+}
+.india{
+  margin-left:38px;  
+}
+.duo{
+  margin-left:38px;  
+}
+
+
+
+
 
 
 
