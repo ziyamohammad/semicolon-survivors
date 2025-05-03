@@ -8,7 +8,9 @@ const Caregivers = ({ caregiver }) => {
       <span className="choosehead">Choose Your Caregiver!!</span>
       {caregiver && caregiver.map((cg)=>{
         return(
-            <CaregiverCard name={cg.fullName} dob={cg.dateOfBirth} experience={cg.yearsOfExpertise} field={cg.fieldOfExpertise} email={cg.email} image={cg.careGiverImage}/>
+         
+            <CaregiverCard  phone={cg.mobileNumber} name={cg.fullName} dob={cg.dateOfBirth} experience={cg.yearsOfExpertise} field={cg.fieldOfExpertise} email={cg.email} image={cg.careGiverImage}/>
+            
         )
       })}
         

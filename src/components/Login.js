@@ -42,6 +42,7 @@ const Login = ({handlemaster}) => {
         navigate("/");
       } else {
         toast.error("Invalid Credentials");
+        navigate("/Signup")
       }
      handlemaster(user)
     } catch (error) {
