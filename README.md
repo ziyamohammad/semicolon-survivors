@@ -8,7 +8,8 @@
 **Team Members:**  
 - Mohammad Ziya  
 - Arpit Pandey  
-- Mohammad Kaif  
+- Kuldip Singh
+- Mayank Rajput 
 
 ---
 
