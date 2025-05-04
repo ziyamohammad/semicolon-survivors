@@ -13,6 +13,7 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import { useEffect, useState } from 'react';
 import Caregivers from './components/Caregivers';
+import Profile from './components/Profile';
 
 
 
@@ -20,6 +21,7 @@ function App() {
  
   const[master,setmaster]=useState({})
   const[caregiver,setCaregiver]=useState([])
+  const[pass,setPass]=useState({})
 
   // SIGNUP FUNCTIONALITY
   useEffect(() => {
@@ -45,6 +47,27 @@ const handlecaregiver = (res) => {
   }
 };
 
+const passprops=(phone,name,experience,image,field,dob,email,education,lang,aadhar)=>{
+  setPass(prevPass => ({
+    ...prevPass,
+    phone,
+    name,
+    experience,
+    image,
+    field,
+    dob,
+    email,
+    education,
+    lang,
+    aadhar
+  }));
+  
+  // console.log(pass.name);
+}
+
+useEffect(() => {
+  console.log("Updated pass state:", pass);
+}, [pass]);
  
  
   // LOGIN FUNCTIONALITY
@@ -61,11 +84,8 @@ const handlecaregiver = (res) => {
       <Route path="/Registration" element={<Registration/>} />
       <Route path="/Login" element={<Login handlemaster ={handlemaster}/>} />
       <Route path="/signup" element={<Signup />}/>
-      <Route path="/Caregivers" element={<Caregivers caregiver={caregiver} />}/>
-      {/* <Route path="/page2" element={<Page2/>} />
-      <Route path="/page3" element={<Page3/>} />
-      <Route path="/" element={<Page1/>} /> */}
-
+      <Route path="/Caregivers" element={<Caregivers caregiver={caregiver} passprops={passprops} />}/>
+      <Route path="/profile" element={<Profile  pass={pass}/>}/>
        </Routes>
        </Router>
        <ToastContainer position="top-center"  autoClose={2000} />

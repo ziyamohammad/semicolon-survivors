@@ -1851,7 +1851,7 @@ margin-bottom:2px;
 }
 .careheadings {
   display:flex;
- gap:197px;
+ gap:31%;
  font-family: "Inter", serif;    
 font-weight: 600;
 font-size: 15px;
@@ -1859,11 +1859,22 @@ font-size: 15px;
 
 
 }
+.allthreedetails{
+  display:flex;
+  width:100%;
+  height:20%;
+  justify-content: space-between;
+}
+.careexperience li , .Nationality li , .dob li{
+  margin-left:20px;
+}
+
 .careheadingsanswer{
   display:flex;
   font-family: "Inter", serif;     
 font-weight: 400;
 font-size: 15px;
+justify-content: space-between;
 
 
   
@@ -1904,6 +1915,144 @@ font-size: 16px;
 .heart{
   display:flex;
   justify-content: space-between;
+}
+
+/* caregiver fetch responsive design  */
+
+
+
+/* Caregiver profile page */
+.profile{
+  width:100%;
+  height:100vh;
+  background:linear-gradient(rgb(227, 248, 251),rgba(97, 174, 185, 1));
+}
+
+
+.profilehead{
+  text-align: center;
+  font-family: "Inter", serif;      
+ 
+font-weight: 500;
+font-size: 40px;
+text-decoration: underline;
+text-decoration-style: solid;
+
+}
+.both{
+  height:83%;
+  width:100%;
+  display:flex;
+  justify-content: space-around;
+  margin-top:60px;
+}
+.profileimage{
+  height:130px;
+  width:130px;
+  margin-left: 5%;
+  margin-right: 10px;
+
+}
+.profileimage img{
+  border-radius: 50%;
+  border:6px solid grey;
+}
+.profiledetails{
+  width:70%;
+  height:95%;
+  background-color: rgba(255, 255, 255, 0.3);
+  box-shadow: -5px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  padding:20px;
+  display:flex;
+  flex-direction: column;
+}
+.previous{
+  height: 100%;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.contact , .lang , .ed h5{
+
+font-weight: 600;
+font-size: 15px;
+font-family: "Inter", serif;      
+}
+.lang , .profileemail ,.profilephone{
+  font-family: "Inter", serif;       
+font-weight: 400;
+font-size: 15px;
+
+
+}
+.otherdetails{
+  height:50%;
+  width:97%;
+  display:flex;
+  justify-content: space-between;
+  margin-top: 20px;
+
+}
+.lang li{
+margin-left:20px;
+margin-top: 10px;
+}
+
+.contact h5{
+
+font-weight: 600;
+font-size: 15px;
+font-family: "Inter", serif;       
+
+}
+.impdetails{
+  display:flex;
+  flex-direction: column;
+  height:70%;
+  justify-content: space-around;
+}
+.aadharboth{
+  display:flex;
+  width:70%;
+
+}
+.aadharimage{
+  height:207%;
+  width:60%;
+  border-radius: 12px;
+}
+.aadharimage img{
+  height:100%;
+  width:100%;
+}
+.payment{
+  display:flex;
+ 
+}
+.validid{
+  width:50%;
+  height:40%;
+}
+.rupay{
+  margin-right: 27%;
+  font-family: "Inter", serif;       
+ height:20%;
+ width:58%;
+font-weight: 600;
+font-size: 18px;
+border-bottom: 2px dotted rgba(89, 163, 174, 1);
+
+}
+.razorpay{
+  height:33px;
+  width:100px;
+  background-color: rgba(126, 187, 196, 1);
+  font-family: "Inter", serif;         
+font-weight: 400;
+font-size: 16px;
+margin-top:20px;
+
+
 }
 
 

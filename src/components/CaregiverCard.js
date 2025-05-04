@@ -1,10 +1,12 @@
 import { Check, Heart } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router'
 
-const CaregiverCard = ({phone,name,experience,image,field,dob,email}) => {
+const CaregiverCard = ({phone,name,experience,image,field,dob,email,education,lang,aadhar,passprops}) => {
   const[like,Setlikes]=useState(false)
   const[rating,Setrating]=useState(0)
   const[amount,setamount]=useState(0)
+  const navigate = useNavigate();
 
   const handleclick = () =>{
     Setlikes(!like);
@@ -26,6 +28,11 @@ const CaregiverCard = ({phone,name,experience,image,field,dob,email}) => {
     }
     setamount(newAmount);
   }, [experience]);
+
+  const handlenavigate=(phone,name,experience,image,field,dob,email,education,lang,aadhar)=>{
+    passprops(phone,name,experience,image,field,dob,email,education,lang,aadhar)
+     navigate("/profile")
+  }
   return (
     <div className="caregivercard">
      <div className="caregiverimage">
@@ -42,23 +49,31 @@ const CaregiverCard = ({phone,name,experience,image,field,dob,email}) => {
        <div className= "caregiverexpertise">
         <Check  fill ="rgba(3, 172, 240, 1)" color="rgba(3, 172, 240, 1)"/><span className="expertise">{field}</span>
        </div>
-       <div className = "careheadings">
-        <span>Work Experience</span>
-        <span>Email</span>
-        
-        <span>DOB</span>
+       <div className="allthreedetails">
+       <div className="careexperience">
+         <h5>Work Experience</h5>
+         <ul>
+          <li>{experience}</li>
+         </ul>
        </div>
-       <div className = "careheadingsanswer">
-        <span className="careexp">{experience}</span>
-        <span className="careemail">{email}</span>
-      
-        <span className="duo">{dob}</span>
+       <div className="Nationality">
+         <h5>Nationality</h5>
+         <ul>
+          <li>Indian</li>
+         </ul>
+       </div>
+       <div className="dob">
+         <h5>DOB</h5>
+         <ul>
+          <li>{dob}</li>
+         </ul>
+       </div>
        </div>
        <div className="buttons">
         <a href = {`tel:${phone}`}>
         <button className="caregiverbutc">Contact</button>
         </a>
-        <button className="caregiverbut">View Profile</button>
+        <button className="caregiverbut" onClick={()=>handlenavigate(phone,name,experience,image,field,dob,email,education,lang,aadhar)}>View Profile</button>
        </div>
      </div>
     </div>
