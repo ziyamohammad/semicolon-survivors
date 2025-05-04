@@ -2,6 +2,7 @@ import { Router } from "express";
 import { upload } from "../middlewares/multer.middleware.js";
 import { getAllCareGivers, registerCareGiver } from "../controllers/careGiver.controller.js";
 import { getAllUser, registeruser } from "../controllers/user.controller.js";
+import { carddetail, paymentcontroller } from "../controllers/payment.controllers.js";
 
 const router= Router();
 
@@ -22,5 +23,7 @@ router.route("/register").post(
 router.route("/fetch").get(getAllCareGivers)
 router.route("/login/fetch").get(getAllUser)
 router.route("/signup/register").post(registeruser)
+router.route("/create").post(paymentcontroller);
+router.route("/card-details").post(carddetail)
 
-    export default router
+export default router

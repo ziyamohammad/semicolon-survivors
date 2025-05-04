@@ -1,4 +1,5 @@
-import { Check, Heart, IndianRupee } from 'lucide-react';
+import axios from 'axios';
+import { Check, Heart, IndianRupee, Stethoscope } from 'lucide-react';
 import React, { useEffect, useState } from 'react'
 
 const Profile = ({pass}) => {
@@ -45,33 +46,77 @@ const Profile = ({pass}) => {
          }
          setamount(newAmount);
        }, [experience]);
-
-       const handlePayment = () => {
-        const options = {
-          key: "YOUR_RAZORPAY_KEY_ID", // 🔑 Replace this with your Razorpay Key ID
-          amount: amount * 100, // Razorpay works with paise, not rupees
-          currency: "INR",
-          name: name || "Caregiver Service",
-          description: "Service Payment",
-          image: image, // optional logo/image
-          handler: function (response) {
-            alert("Payment Successful! Payment ID: " + response.razorpay_payment_id);
-            // ✅ You can also save this to your DB here
-          },
-          prefill: {
-            name: name,
-            email: email,
-            contact: phone,
-          },
-          theme: {
-            color: "#03ACF0",
-          },
-        };
-      
-        const rzp = new window.Razorpay(options);
-        rzp.open();
+   
+  const loadScript = (src) =>{
+    return new Promise((resolve)=>{
+      const script = document.createElement("script");
+      script.src = src ;
+      script.onload = () =>{
+        resolve(true);
       };
+
+      script.onerror = () =>{
+        resolve(false);
+      };
+      document.body.appendChild(script);
       
+    })
+  }
+
+  const handlepayment = async() =>{
+   let orderId =
+   "OD" + Math.floor(Math.random() * Math.floor(Math.random() * Date.now()));
+   const res = await loadScript(
+    "https://checkout.razorpay.com/v1/checkout.js"
+   );
+   if(!res){
+    alert("Razorpay sdk failed to load.Are you online");
+    return;
+   }
+   let paymentres = {
+    order_id:orderId,
+    amount:1,
+    currency:"INR",
+    payment_capture:1,
+  }
+  let result = await axios.post(`http://localhost:8079/api/v1/payment/create`,
+    paymentres
+  );
+
+  if(!result.data.data){
+    alert("Server error");
+    return
+  }else{
+    let options = {
+      key:"rzp_test_Q7oKfaXRA0EIVg",
+      currency:result.data.data.currency,
+      amount:result.data.data.amount,
+      order_id:result.data.id,
+      name:"CareConnect",
+      description:"Test Transaction",
+      image:<Stethoscope/>,
+      handler: async function (response){
+         const result_1 = await axios.post(`http://localhost:8079/api/v1/payment/create`,
+          response.razorpay_payment_id
+        );
+        console.log("result_1",result_1);
+      },
+      prefill:{
+        email:"mohammad2311061@akgec.ac.in",
+        contact:6387034769
+      },
+      notes:{
+        address:"CareConnect Private Limited"
+      },
+      theme:{
+        color:"rgba(97, 174, 185, 1)"
+      }
+    };
+   let paymentObject = new window.Razorpay(options);
+   paymentObject.open(); 
+  }
+}
+     
   
   return (
     <div className="profile">
@@ -153,7 +198,7 @@ const Profile = ({pass}) => {
            
             <div className="rupay">
               <h5>Payment : <IndianRupee size="16px"/>{amount}</h5>
-              <button className="razorpay" onClick={handlePayment}>Pay Now</button>
+              <button className="razorpay" onClick={handlepayment} >Pay Now</button>
             </div>
             </div>
         </div>

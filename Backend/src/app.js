@@ -24,9 +24,11 @@ app.use(cookieParser())
 import  userRegister  from "./routes/careGiver.routes.js";
 import Registeruser from "./routes/careGiver.routes.js"
 import { errorHandler } from "./middlewares/error.middleware.js";
+import payment from "./routes/careGiver.routes.js"
 
 app.use("/api/v1/caregiver",userRegister)
 app.use("/api/v1/user",Registeruser)
+app.use("/api/v1/payment",payment)
 
 app.use(errorHandler)
 export { app }
